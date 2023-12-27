@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    
+    <style>
+        body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-color: #f0f0f0;
+    transition: background-color 1s ease;
+}
+
+        #header {
+            width: auto;
+            margin-top: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #00000096 ;
+    margin: 40px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    animation: bounce 8s infinite; /* Apply a bouncing animation */
+    text-shadow: 2px 2px 4px #f0f0f0; /* Apply a text shadow */
+
+    /* Define the bouncing animation keyframes */
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0); /* Bounce at the top position */
+        }
+        40% {
+            transform: translateY(5px); /* Bounce at a higher position */
+        }
+        60% {
+            transform: translateY(-5px); /* Bounce at a mid position */
+        }
+    }
+}
+
+        #menu {
+            width: auto;
+            margin-top: 0%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        #soundselector {
+            display: inline-flex;
+        }
+
+        #mastercontainer {
+            margin-bottom: 0%;
+            
+        }
+
+        #container {
+            position: relative;
+            display: flex; /* Use flex to center child elements */
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            width: 240px;
+            height: 240px;
+            box-shadow: #f0f0f0;
+            
+        }
+
+        #square {
+            position: relative;
+            display: flex;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-style: hidden;
+            border: 0px solid #333;
+            background-size: cover;
+            border-radius: 3%;
+            background-position: center;
+            background-color: #e0d2d2;
+            transition: background-color 4s ease; /* Smooth transition for background color change */
+            justify-content: center;
+            box-shadow: 0 0 20px 0 rgb(255, 255, 255); /* Added color 'blue' for the shadow */
+
+
+            }
+
+            #square::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(122, 64, 64, 0); /* Initial transparent background for the ripple */
+    border-radius: 50%;
+    animation: rippleAnimation 2s linear; /* Adjust the duration and timing function as needed */
+}
+
+
+
+@keyframes rippleAnimation {
+    to {
+        transform: scale(3);
+        opacity: 0;
+    }
+}
+
+        #circle {
+            position: absolute;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #dcb8b8;
+            border-style: none;
+            border-width: thin;
+            border-color: #000000;
+            animation: circleAnimation 16s linear infinite;
+            /* Set initial position to top-left corner */
+            top: 0;
+            left: 0;
+            box-shadow: 0 0 10px 0 rgb(255, 255, 255); /* Added color 'blue' for the shadow */
+
+        }
+
+        @keyframes circleAnimation {
+            0% { top: -4%; left: -4%; }
+            25% { top: -4%; left: 96%; }
+            50% { top: 96%; left: 96%; }
+            75% { top: 96%; left: -4%; }
+            100% { top: -4%; left: -4%; }
+        }
+
+        #fileInput { width: auto;
+        
+        }
+
+        #picupload {
+            width: auto;
+            margin-top: 50px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #toggleButton {
+            padding: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;}
+
+        #buttons {
+            width: auto;
+            margin-top: 50px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+        }
+
+        #mastercontainer {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #durationSelector {
+            margin-left: 10px;
+        }
+
+        #instructions {
+        display: flex;
+        text-decoration: solid;
+        align-items: center;
+        justify-content: center;
+        color: #faf4f4;
+        text-transform: uppercase;
+        font-weight: bold ;
+        font-size: 20px;
+        transition: color 1s ease; /* Add this line for the transition effect */
+        animation: textAnimation 8s infinite; /* Apply the animation */
+        outline-color: #000000 are you do;
+    }
+    
+
+        @keyframes textAnimation {
+        0%, 100% {
+            font-size: 20px; /* Initial and final size */
+        }
+        50% {
+            font-size: 23px; /* Increased size */
+        }
+    }
+
+    #soundSelector {
+            margin-bottom: 10px;
+            border-radius: 5%;
+            font-style: oblique;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border: hidden;    
+            background-color: rgba(255, 255, 255, 0);  
+        }
+
+        #footer {
+            margin-top: 100px;
+            size: 10%;
+        }
+
+        #mutebutton {
+        padding: 6px;
+        cursor: pointer;
+        border: 0.5px solid #ffffff;
+        background-color: #f0f0f088;
+        border-radius: 5px;
+        box-shadow: 0 0 20px 0 rgb(255, 255, 255); /* Added color 'blue' for the shadow */
+        }
+
+
+    </style>
+    <title>Box Breathing Tool</title>
+</head>
+<body>
+
+
+    <div id="mastercontainer">
+        <div id="header">
+            <!-- Add Tailwind's classes for text styling -->
+            <h1 class="text-4xl font-bold text-black-500">IRIE BREATHE</h1>
+        
+            </div>
+            <div id="menu">
+            
+                    <label for="soundSelector">Background Sound:</label>
+            <select id="soundSelector" onchange="changeSound()">
+                <option value="none">None</option>
+                <option value="thunder">Rain and Thunder</option>
+                <option value="beach">Beach</option>
+                <option value="farm">Farm</option>
+    </select>
+    <button id="mutebutton" onclick="toggleMute()">Toggle Beep</button>
+</div>
+            <div id="container">
+            <div id="square">
+                <p id="instructions"></p>
+            </div>
+            <div id="ripple"></div>
+            <div id="circle"></div>
+        </div>
+
+    <div id="footer">
+        <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="leolaker23z" data-color="#FFDD00" data-emoji=""  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
+    </div>
+
+    </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/whammy-ts@0.3.0/dist/whammy.min.js"></script>
+    <script>
+
+let audioElement2;
+
+// Call playSound to start playing the sound when the page loads
+playSound();
+
+// Set an interval to play the sound every 4 seconds
+setInterval(playSound, 4000);
+
+function playSound() {
+    if (!audioElement2) {
+        // Create a new audio element for the sound
+        audioElement2 = new Audio('blip.mp3');
+        audioElement2.loop = false; // Set loop to true for continuous play
+        audioElement2.muted = false; // Initially muted
+    }
+
+    // Play the sound
+    audioElement2.play();
+}
+
+// Toggle mute on and off without affecting the continuous play
+function toggleMute() {
+    if (audioElement2) {
+        // Toggle mute on and off
+        audioElement2.muted = !audioElement2.muted;
+    }
+}
+
+let audioElement;
+
+        function changeSound() {
+            if (audioElement) {
+                // Pause and reset the current audio element
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            }
+
+            // Get the selected sound from the dropdown
+            const soundSelector = document.getElementById('soundSelector');
+            const selectedSound = soundSelector.value;
+
+            if (selectedSound !== 'none') {
+                // Create a new audio element for the selected sound
+                audioElement = new Audio(`./${selectedSound}.mp3`);
+                audioElement.loop = true;
+                audioElement.play();
+            }
+        }
+
+    function updateText() {
+    const instructions = document.getElementById('instructions');
+
+    // Set up an array with the phases and their durations
+    const phases = [
+        { text: 'Breathe In', duration: 4000 },   // 4 seconds
+        { text: 'Hold', duration: 4000 },         // 4 seconds
+        { text: 'Breathe Out', duration: 4000 },  // 4 seconds
+        { text: 'Hold', duration: 4000 }          // 4 seconds
+    ];
+
+    // Function to iterate through the phases
+    function iteratePhases(index) {
+        const phase = phases[index];
+
+        // Set the text content based on the current phase
+        instructions.textContent = phase.text;
+
+        // Move to the next phase after the specified duration
+        setTimeout(() => {
+            // Call the next phase or start over if it's the last phase
+            if (index < phases.length - 1) {
+                iteratePhases(index + 1);
+            } else {
+                iteratePhases(0);  // Start over
+            }
+        }, phase.duration);
+    }
+
+    // Start the iteration with the first phase
+    iteratePhases(0);
+}
+
+// Call updateText once when the page loads
+updateText();
+
+
+        function changeAnimationDuration() {
+            const circle = document.getElementById('circle');
+            const durationSelector = document.getElementById('durationSelector');
+            const selectedDuration = durationSelector.value;
+
+            // Set animation duration based on the selected option
+            switch (selectedDuration) {
+                case '1':
+                    circle.style.animation = 'circleAnimation 12s linear infinite';
+                    break;
+                case '2':
+                    circle.style.animation = 'circleAnimation 14s linear infinite';
+                    break;
+                case '3':
+                    circle.style.animation = 'circleAnimation 16s linear infinite';
+                    break;
+                default:
+                    // Default duration
+                    circle.style.animation = 'circleAnimation 16s linear infinite';
+            }
+        }
+
+        // Animation for background color change
+       setInterval(changeBackgroundColor, 4000);
+
+        function changeBackgroundColor() {
+            const body = document.body;
+            const randomColor = getRandomColor();
+            body.style.backgroundColor = randomColor;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        } 
+
+
+
+setInterval(changeSquareColor, 4000);
+// function to change square colour and not background 
+
+function changeSquareColor() {
+    // Generate a random color
+    const randomColor = getRandomColor();
+
+    // Get the square element by its id
+    const square = document.getElementById('square');
+
+    // Apply the random color as the background color
+    square.style.backgroundColor = randomColor;
+}
+
+function getRandomColor() {
+    // Function to generate a random hex color
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+} 
+    </script>
+</body>
+</html>
